@@ -1,5 +1,5 @@
 from pyspark import SparkContext
-sc = SparkContext(appName = "test")
+sc = SparkContext.getOrCreate(appName = "test")
 
 a = sc.parallelize([1,2,3,4])
 
