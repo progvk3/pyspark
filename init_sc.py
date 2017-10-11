@@ -1,5 +1,7 @@
-from pyspark import SparkContext
-sc = SparkContext.getOrCreate(appName = "test")
+from pyspark import SparkContext, SparkConf
+
+conf = SparkConf()
+sc = SparkContext.getOrCreate(conf)
 
 a = sc.parallelize([1,2,3,4])
 
