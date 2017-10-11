@@ -1,0 +1,51 @@
+##############################################################################
+# Global        redhat                                                              #
+#----------------------------------------------------------------------------#
+# Global settings for the daemon.                                            #
+##############################################################################
+
+Hostname    "CC_CUSTNAME_HNAME" ####################################<<<<<<<<<<<<<<<<<<<<<<< Change it as per the enviroment
+#FQDNLookup   true
+#BaseDir     "/var/lib/collectd"
+
+LoadPlugin syslog
+LoadPlugin cpu
+LoadPlugin cpufreq
+LoadPlugin df
+<Plugin df>
+       FSType "ext3"
+       FSType "ext4"
+       FSType "xfs"
+       IgnoreSelected false
+       ReportByDevice true
+       ReportInodes true
+       ValuesAbsolute true
+</Plugin>
+LoadPlugin disk
+LoadPlugin interface
+LoadPlugin irq
+LoadPlugin load
+#LoadPlugin memcached
+LoadPlugin memory
+LoadPlugin uptime
+LoadPlugin users
+LoadPlugin vmem
+LoadPlugin processes
+LoadPlugin swap
+<Plugin swap>
+        ReportByDevice true
+        ReportBytes true
+</Plugin>
+<Plugin network>
+  Server "1.1.1.1" "11111"  ####################################<<<<<<<<<<<<<<<<<<<<<<< Change "ip-172-20-100-120.ec2.internal" to collecd host
+</Plugin>
+LoadPlugin write_http
+<Plugin write_http>
+  <Node "collectd_exporter">
+    URL "http://1.1.1.1:8888/collectd-post"  ####################################<<<<<<<<<<<<<<<<<<<<<<< Change it to collecd host
+    Format "JSON"
+    StoreRates false
+  </Node>
+</Plugin>
+
+Include "/etc/collectd.d"
