@@ -1,3 +1,8 @@
+from pyspark import SparkContext, SparkConf
+
+conf = SparkConf()
+sc = SparkContext.getOrCreate(conf)
+
 rdd1 = sc.textFile("file:///home/vasanth/pyspark/docs/testfile1.txt")
 
 rdd2 = rdd1.flatMap(lambda x: x.split(" "))
@@ -12,3 +17,4 @@ for i in rdd2.collect():
 	final.append(i,a.value)
 
 print(final)
+
