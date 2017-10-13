@@ -14,7 +14,8 @@ for i in rdd2.collect():
 	for j in rdd2.collect():
 		if i == j:
 			a +=1
-	final.append(i,a.value)
+	x = [i,a.value]
+	final.append(x)
 
 print(final)
 
